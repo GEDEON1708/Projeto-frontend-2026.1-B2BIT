@@ -1,6 +1,12 @@
+import { mkdirSync } from "node:fs";
+import { dirname, resolve } from "node:path";
 import { Database } from "bun:sqlite";
 
-const db = new Database("db.sqlite", { create: true });
+const databasePath = resolve(process.env.DATABASE_PATH || "db.sqlite");
+
+mkdirSync(dirname(databasePath), { recursive: true });
+
+const db = new Database(databasePath, { create: true });
 
 // Habilitar Foreign Keys
 db.run("PRAGMA foreign_keys = ON;");
@@ -48,4 +54,4 @@ db.run(`
   );
 `);
 
-export { db };
+export { db, databasePath };

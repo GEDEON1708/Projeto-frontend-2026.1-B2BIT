@@ -1,0 +1,9 @@
+.git
+**/node_modules
+**/dist
+**/coverage
+**/*.log
+**/.env
+**/.env.local
+mini-twitter-frontend
+mini-twitter-workspace.zip

@@ -26,6 +26,15 @@ describe("Mini Twitter API", () => {
     seedDatabase();
   });
 
+  it("exposes a healthcheck endpoint", async () => {
+    const response = await app.handle(request("/health"));
+    const body = await responseJson<{ status: string; timestamp: string }>(response);
+
+    expect(response.status).toBe(200);
+    expect(body.status).toBe("ok");
+    expect(body.timestamp.length).toBeGreaterThan(10);
+  });
+
   it("returns richer seeded posts and supports searching by title, content and author", async () => {
     const feedResponse = await app.handle(request("/posts"));
     const feedBody = await responseJson<{

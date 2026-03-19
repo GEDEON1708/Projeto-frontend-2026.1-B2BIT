@@ -6,6 +6,10 @@ import { authRoutes } from "./routes/auth.routes";
 import { postRoutes } from "./routes/post.routes";
 
 export const app = new Elysia()
+  .get("/health", () => ({
+    status: "ok",
+    timestamp: new Date().toISOString(),
+  }))
   .use(
     swagger({
       documentation: {

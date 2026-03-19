@@ -122,6 +122,31 @@ cp .env.example .env
 
 Frontend disponivel em `http://localhost:5173`
 
+## Deploy do backend no Railway
+
+Este repositorio ja foi preparado para deploy do backend com Railway usando o `Dockerfile` e o `railway.json` na raiz.
+
+Passo a passo sugerido:
+
+1. Crie um novo projeto no Railway conectando este repositorio do GitHub.
+2. Na configuracao do servico, adicione um volume montado em `/data`.
+3. Configure as variaveis:
+
+```bash
+JWT_SECRET=uma-chave-secreta-forte
+DATABASE_PATH=/data/db.sqlite
+```
+
+4. Gere um dominio publico em `Settings > Networking > Public Networking`.
+5. Use a URL gerada como URL base para a avaliacao dos endpoints.
+
+Observacoes importantes:
+
+- a aplicacao agora suporta `PORT` dinamica para funcionar corretamente na nuvem.
+- o banco SQLite pode ficar persistente usando o volume montado em `/data`.
+- o endpoint `GET /health` foi adicionado para healthcheck do servico.
+- se o banco estiver vazio no primeiro boot, a API aplica o seed inicial automaticamente.
+
 ## Variaveis de ambiente
 
 ### Frontend
@@ -138,6 +163,7 @@ Opcionalmente, a API aceita:
 
 ```bash
 JWT_SECRET=super-secret-key
+DATABASE_PATH=db.sqlite
 ```
 
 ## Contas para demonstracao
