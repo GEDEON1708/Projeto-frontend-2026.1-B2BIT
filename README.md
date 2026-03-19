@@ -2,14 +2,25 @@
 
 Desafio tecnico full stack da B2Bit para construir uma mini rede social com autenticacao, timeline publica, interacoes em posts e uma experiencia moderna no frontend.
 
-## Sobre o desafio
+## Resumo
 
 O objetivo deste projeto foi entregar uma aplicacao inspirada no fluxo basico de uma rede social, cobrindo tanto a camada de API quanto a interface web.
 
-O repositório esta organizado como um workspace com duas aplicacoes:
+O repositorio esta organizado como um workspace com duas aplicacoes:
 
 - `mini-twitter-backend-main`: API REST responsavel por autenticacao, regras de negocio e persistencia.
 - `mini-twitter-frontend`: aplicacao web que consome a API e entrega a experiencia do usuario.
+
+## Diferenciais
+
+- arquitetura full stack separada em frontend e backend, facilitando manutencao e evolucao.
+- autenticacao com JWT e invalidacao de token no logout via blacklist.
+- regras de autorizacao garantindo edicao e exclusao apenas pelo autor do post.
+- busca por titulo, conteudo e autor combinada com paginacao no backend.
+- scroll infinito no feed com cache e sincronizacao de dados no frontend via React Query.
+- seed com usuarios e posts de demonstracao para avaliacao imediata.
+- testes automatizados cobrindo o fluxo principal da API.
+- documentacao interativa da API com Swagger.
 
 ## Stack utilizada
 
@@ -46,6 +57,22 @@ O repositório esta organizado como um workspace com duas aplicacoes:
 - tratamento de estados de carregamento e erro no frontend
 - seed com usuarios e posts para demonstracao
 - testes automatizados cobrindo fluxo principal da API
+
+## Preview
+
+Esta secao fica pronta para receber screenshots ou gifs do projeto, o que ajuda bastante na avaliacao visual do repositorio. Sugestao de capturas para adicionar depois:
+
+- tela de autenticacao com abas de login e cadastro
+- feed principal com busca e scroll infinito
+- criacao e edicao de post
+- fluxo de interacao com likes
+
+Exemplo de como incluir quando voce tiver as imagens:
+
+```md
+![Tela de autenticacao](docs/screenshots/auth.png)
+![Feed principal](docs/screenshots/feed.png)
+```
 
 ## Estrutura do projeto
 
@@ -141,12 +168,12 @@ npm run build
 
 ## Decisoes tecnicas
 
-- O backend usa SQLite para simplificar a execucao local e reduzir dependencias externas.
-- A autenticacao foi implementada com JWT e blacklist para suportar logout invalidador de sessao.
-- O frontend usa React Query para paginação e atualizacao de dados do feed com melhor experiencia de uso.
-- O seed inicial facilita a avaliacao do desafio sem depender de cadastro manual de massa de dados.
+- o backend usa SQLite para simplificar a execucao local e reduzir dependencias externas.
+- a autenticacao foi implementada com JWT e blacklist para suportar logout invalidador de sessao.
+- o frontend usa React Query para paginacao e atualizacao de dados do feed com melhor experiencia de uso.
+- o seed inicial facilita a avaliacao do desafio sem depender de cadastro manual de massa de dados.
 
 ## Observacoes
 
-- O projeto foi preparado para avaliacao tecnica e execucao local rapida.
-- Para resetar os dados da aplicacao, rode `bun run seed` no backend.
+- o projeto foi preparado para avaliacao tecnica e execucao local rapida.
+- para resetar os dados da aplicacao, rode `bun run seed` no backend.
