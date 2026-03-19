@@ -1,0 +1,152 @@
+# Mini Twitter
+
+Desafio tecnico full stack da B2Bit para construir uma mini rede social com autenticacao, timeline publica, interacoes em posts e uma experiencia moderna no frontend.
+
+## Sobre o desafio
+
+O objetivo deste projeto foi entregar uma aplicacao inspirada no fluxo basico de uma rede social, cobrindo tanto a camada de API quanto a interface web.
+
+O repositório esta organizado como um workspace com duas aplicacoes:
+
+- `mini-twitter-backend-main`: API REST responsavel por autenticacao, regras de negocio e persistencia.
+- `mini-twitter-frontend`: aplicacao web que consome a API e entrega a experiencia do usuario.
+
+## Stack utilizada
+
+### Backend
+
+- Bun como runtime
+- ElysiaJS como framework HTTP
+- SQLite com `bun:sqlite` para persistencia local
+- JWT para autenticacao
+- Swagger/OpenAPI para documentacao da API
+- Bun Test para testes automatizados da API
+
+### Frontend
+
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS
+- TanStack React Query para cache e sincronizacao de dados
+- React Hook Form + Zod para formularios e validacao
+- Zustand para estado de autenticacao
+- Axios para comunicacao HTTP
+
+## Funcionalidades entregues
+
+- cadastro de usuario
+- login e logout com invalidacao do token
+- timeline publica com paginacao
+- busca de posts por titulo, conteudo e autor
+- criacao de post com titulo, conteudo e imagem por URL
+- edicao e exclusao apenas pelo autor do post
+- like e deslike em posts
+- scroll infinito no feed
+- tratamento de estados de carregamento e erro no frontend
+- seed com usuarios e posts para demonstracao
+- testes automatizados cobrindo fluxo principal da API
+
+## Estrutura do projeto
+
+```text
+.
+|-- mini-twitter-backend-main
+|   |-- src
+|   |-- tests
+|   `-- seed.ts
+|-- mini-twitter-frontend
+|   |-- src
+|   `-- .env.example
+`-- README.md
+```
+
+## Como executar localmente
+
+### 1. Subir o backend
+
+```bash
+cd mini-twitter-backend-main
+bun install
+bun run seed
+bun run dev
+```
+
+API disponivel em `http://localhost:3000`
+
+Swagger disponivel em `http://localhost:3000/swagger`
+
+### 2. Subir o frontend
+
+Em outro terminal:
+
+```bash
+cd mini-twitter-frontend
+npm install
+copy .env.example .env
+npm run dev
+```
+
+No macOS ou Linux, substitua por:
+
+```bash
+cp .env.example .env
+```
+
+Frontend disponivel em `http://localhost:5173`
+
+## Variaveis de ambiente
+
+### Frontend
+
+Arquivo `.env`:
+
+```bash
+VITE_API_URL=http://localhost:3000
+```
+
+### Backend
+
+Opcionalmente, a API aceita:
+
+```bash
+JWT_SECRET=super-secret-key
+```
+
+## Contas para demonstracao
+
+Depois de executar `bun run seed`, estas contas podem ser usadas:
+
+- `gedeon@example.com` / `password123`
+- `alice@example.com` / `password123`
+- `bruno@example.com` / `password123`
+- `mariana@example.com` / `password123`
+- `rafael@example.com` / `password123`
+
+## Validacao e testes
+
+### Backend
+
+```bash
+cd mini-twitter-backend-main
+bun test
+```
+
+### Frontend
+
+```bash
+cd mini-twitter-frontend
+npm run build
+```
+
+## Decisoes tecnicas
+
+- O backend usa SQLite para simplificar a execucao local e reduzir dependencias externas.
+- A autenticacao foi implementada com JWT e blacklist para suportar logout invalidador de sessao.
+- O frontend usa React Query para paginação e atualizacao de dados do feed com melhor experiencia de uso.
+- O seed inicial facilita a avaliacao do desafio sem depender de cadastro manual de massa de dados.
+
+## Observacoes
+
+- O projeto foi preparado para avaliacao tecnica e execucao local rapida.
+- Para resetar os dados da aplicacao, rode `bun run seed` no backend.
